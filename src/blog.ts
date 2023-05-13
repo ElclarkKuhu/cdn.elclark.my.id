@@ -42,6 +42,7 @@ export default function build() {
 			title: post.title,
 			date: post.date,
 			author: post.author,
+			featured_image: post.featured_image,
 		})
 
 		fs.writeFileSync(
@@ -82,8 +83,10 @@ function compilePost(post_path: string) {
 		slug,
 		title: data.title,
 		date: data.date,
+		updated: data.updated,
 		author: data.author,
 		tags: data.tags,
+		featured_image: data.featured_image,
 		reading_time,
 		content: html,
 	}
