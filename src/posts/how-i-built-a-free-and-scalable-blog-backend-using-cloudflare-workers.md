@@ -6,6 +6,8 @@ date: 2023-05-10T11:37:18.684Z
 tags: ['Cloudflare Workers', 'SvelteKit', 'Blog', 'Backend']
 ---
 
+UPDATE: This post is now outdated. I've since use the good old Markdown file to store my blog post. New post will be coming soon.
+
 ## Introduction
 
 Over the last couple of weeks, I've been busy building my website using SvelteKit and hosting it on Cloudflare Pages. It's been a fun ride so far, but I've hit a bit of a roadblock when it comes to setting up the blog section of my site.
