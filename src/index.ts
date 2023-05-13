@@ -24,5 +24,5 @@ fs.readdirSync(static_path).forEach((file) => {
 	fs.copyFileSync(path.join(static_path, file), path.join(build_path, file))
 })
 
-blog()
-user()
+user.build()
+blog.build()

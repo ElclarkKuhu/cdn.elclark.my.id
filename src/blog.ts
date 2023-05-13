@@ -10,7 +10,7 @@ marked.use(mangle())
 
 const static_directory = path.join(process.cwd(), config.build_path)
 
-export default function build() {
+export function build() {
 	const posts_directory = path.join(process.cwd(), config.posts_path)
 	const post_static_directory = path.join(
 		process.cwd(),
@@ -22,6 +22,12 @@ export default function build() {
 		config.build_path,
 		'tag'
 	)
+	const authors_static_directory = path.join(
+		process.cwd(),
+		config.build_path,
+		'user',
+		'posts'
+	)
 
 	const index = {
 		posts: [],
@@ -30,6 +36,7 @@ export default function build() {
 
 	const tags = {}
 	const posts = []
+	const authors = {}
 
 	const post_list = fs.readdirSync(posts_directory)
 
@@ -47,7 +54,6 @@ export default function build() {
 		const post = compilePost(current_path)
 
 		posts.push(post)
-
 		index.posts.push({
 			slug: post.slug,
 			title: post.title,
@@ -57,20 +63,11 @@ export default function build() {
 		})
 
 		for (const tag of post.tags) {
-			const tag_slug = tag.toLowerCase().replace(/[^a-z0-9]+/g, '-')
-
-			if (!index.tags.find((t) => t.slug === tag_slug)) {
-				index.tags.push({
-					slug: tag_slug,
-					name: tag,
-				})
+			if (!tags[tag]) {
+				tags[tag] = []
 			}
 
-			if (!tags[tag_slug]) {
-				tags[tag_slug] = []
-			}
-
-			tags[tag_slug].push({
+			tags[tag].push({
 				slug: post.slug,
 				title: post.title,
 				date: post.date,
@@ -78,6 +75,17 @@ export default function build() {
 				featured_image: post.featured_image,
 			})
 		}
+
+		if (!authors[post.author]) {
+			authors[post.author] = []
+		}
+
+		authors[post.author].push({
+			slug: post.slug,
+			title: post.title,
+			date: post.date,
+			featured_image: post.featured_image,
+		})
 
 		fs.writeFileSync(
 			path.join(post_static_directory, `${post.slug}.json`),
@@ -90,9 +98,26 @@ export default function build() {
 	}
 
 	for (const tag of Object.keys(tags)) {
+		const tag_slug = tag.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+		index.tags.push({
+			slug: tag_slug,
+			title: tag,
+		})
+
 		fs.writeFileSync(
-			path.join(tags_static_directory, `${tag}.json`),
+			path.join(tags_static_directory, `${tag_slug}.json`),
 			JSON.stringify(tags[tag], null, 4)
+		)
+	}
+
+	if (!fs.existsSync(authors_static_directory)) {
+		fs.mkdirSync(authors_static_directory, { recursive: true })
+	}
+
+	for (const author of Object.keys(authors)) {
+		fs.writeFileSync(
+			path.join(authors_static_directory, `${author}.json`),
+			JSON.stringify(authors[author], null, 4)
 		)
 	}
 
@@ -136,4 +161,8 @@ function compilePost(post_path: string) {
 		reading_time,
 		content: html,
 	}
+}
+
+export default {
+	build,
 }

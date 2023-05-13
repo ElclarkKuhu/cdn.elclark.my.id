@@ -4,7 +4,7 @@ import config from './config.js'
 
 const static_directory = path.join(process.cwd(), config.build_path)
 
-export default function build() {
+export function build() {
 	const users_directory = path.join(process.cwd(), config.users_path)
 	const user_static_directory = path.join(
 		process.cwd(),
@@ -47,4 +47,8 @@ export default function build() {
 		path.join(static_directory, 'users.json'),
 		JSON.stringify(index, null, 4)
 	)
+}
+
+export default {
+	build,
 }
