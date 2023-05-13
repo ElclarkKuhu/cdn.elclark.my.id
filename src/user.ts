@@ -16,6 +16,8 @@ export function build() {
 	const users = []
 	const user_list = fs.readdirSync(users_directory)
 
+	console.log('Building users...')
+
 	if (!fs.existsSync(user_static_directory)) {
 		fs.mkdirSync(user_static_directory, { recursive: true })
 	}
@@ -29,8 +31,9 @@ export function build() {
 		const current_path = path.join(users_directory, item)
 		const user = JSON.parse(fs.readFileSync(current_path, 'utf8'))
 
-		users.push(user)
+		console.log(`${user.name} (${user.username})`)
 
+		users.push(user)
 		index.push({
 			username: user.username,
 			name: user.name,
@@ -41,12 +44,16 @@ export function build() {
 			path.join(user_static_directory, `${user.username}.json`),
 			JSON.stringify(user, null, 4)
 		)
+
+		console.log()
 	}
 
+	console.log('Writing User Index...')
 	fs.writeFileSync(
 		path.join(static_directory, 'users.json'),
 		JSON.stringify(index, null, 4)
 	)
+	console.log()
 }
 
 export default {

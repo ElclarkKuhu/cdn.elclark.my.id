@@ -38,6 +38,8 @@ export function build() {
 	const posts = []
 	const authors = {}
 
+	console.log('Building posts...')
+
 	const post_list = fs.readdirSync(posts_directory)
 
 	if (!fs.existsSync(post_static_directory)) {
@@ -52,6 +54,8 @@ export function build() {
 
 		const current_path = path.join(posts_directory, item)
 		const post = compilePost(current_path)
+
+		console.log(`${post.slug} (${post.title})`)
 
 		posts.push(post)
 		index.posts.push({
@@ -91,14 +95,20 @@ export function build() {
 			path.join(post_static_directory, `${post.slug}.json`),
 			JSON.stringify(post, null, 4)
 		)
+
+		console.log()
 	}
 
 	if (!fs.existsSync(tags_static_directory)) {
 		fs.mkdirSync(tags_static_directory, { recursive: true })
 	}
 
+	console.log('Building tags...')
 	for (const tag of Object.keys(tags)) {
 		const tag_slug = tag.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+
+		console.log(`${tag} (${tag_slug})`)
+
 		index.tags.push({
 			slug: tag_slug,
 			title: tag,
@@ -109,27 +119,36 @@ export function build() {
 			JSON.stringify(tags[tag], null, 4)
 		)
 	}
+	console.log()
 
 	if (!fs.existsSync(authors_static_directory)) {
 		fs.mkdirSync(authors_static_directory, { recursive: true })
 	}
 
+	console.log('Building User Posts...')
 	for (const author of Object.keys(authors)) {
+		console.log(`@${author}`)
+
 		fs.writeFileSync(
 			path.join(authors_static_directory, `${author}.json`),
 			JSON.stringify(authors[author], null, 4)
 		)
 	}
+	console.log()
 
+	console.log('Writing Post Index...')
 	fs.writeFileSync(
 		path.join(static_directory, 'posts.json'),
 		JSON.stringify(index.posts, null, 4)
 	)
+	console.log()
 
+	console.log('Writing Tag Index...')
 	fs.writeFileSync(
 		path.join(static_directory, 'tags.json'),
 		JSON.stringify(index.tags, null, 4)
 	)
+	console.log()
 }
 
 function getReadingTime(content: string) {
