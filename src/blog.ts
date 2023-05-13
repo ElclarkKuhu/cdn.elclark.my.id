@@ -41,6 +41,7 @@ export default function build() {
 			slug: post.slug,
 			title: post.title,
 			date: post.date,
+			author: post.author,
 		})
 
 		fs.writeFileSync(
