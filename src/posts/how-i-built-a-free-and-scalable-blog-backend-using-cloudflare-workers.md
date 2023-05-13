@@ -6,7 +6,7 @@ date: 2023-05-10T11:37:18.684Z
 tags: ['Cloudflare Workers', 'SvelteKit', 'Blog', 'Backend']
 ---
 
-UPDATE: This post is now outdated. I've since use the good old Markdown file to store my blog post. New post will be coming soon.
+**UPDATE**: This post is now outdated. I've since use the good old Markdown file to store my blog post. New post will be coming soon.
 
 ## Introduction
 
