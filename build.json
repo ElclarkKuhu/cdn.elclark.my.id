@@ -1,0 +1,6 @@
+{
+	"build_path": "build",
+	"posts_path": "src/posts",
+	"users_path": "src/users",
+	"words_per_minute": 200
+}
