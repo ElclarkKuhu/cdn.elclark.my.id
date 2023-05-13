@@ -1,6 +1,48 @@
-<h1>404 - Page not found</h1>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>404 - Not Found</title>
 
-<p>
-	The page you are looking for might have been removed had its name changed or
-	is temporarily unavailable.
-</p>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+
+				font-family: sans-serif;
+
+				color: rgb(236 224 223);
+				background-color: rgb(32 26 26);
+			}
+
+			.container {
+				max-width: 420px;
+				margin: 0 auto;
+				padding: 1rem;
+			}
+
+			@media (prefers-color-scheme: light) {
+				body {
+					color: rgb(32 26 26);
+					background-color: rgb(255 251 255);
+				}
+			}
+
+			@media (min-width: 768px) {
+				.container {
+					max-width: 720px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>404 - Not Found</h1>
+			<p>
+				The requested resource could not be found but may be available again in
+				the future.
+			</p>
+		</div>
+	</body>
+</html>
