@@ -16,13 +16,13 @@ if (!fs.existsSync(static_path)) {
 }
 
 fs.rmSync(build_path, { recursive: true })
-fs.readdirSync(static_path).forEach((file) => {
-	fs.copyFileSync(path.join(static_path, file), path.join(build_path, file))
-})
-
 if (!fs.existsSync(build_path)) {
 	fs.mkdirSync(build_path)
 }
+
+fs.readdirSync(static_path).forEach((file) => {
+	fs.copyFileSync(path.join(static_path, file), path.join(build_path, file))
+})
 
 blog()
 user()
