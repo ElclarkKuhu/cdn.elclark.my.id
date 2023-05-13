@@ -17,9 +17,20 @@ export default function build() {
 		config.build_path,
 		'post'
 	)
+	const tags_static_directory = path.join(
+		process.cwd(),
+		config.build_path,
+		'tag'
+	)
 
-	const index = []
+	const index = {
+		posts: [],
+		tags: [],
+	}
+
+	const tags = {}
 	const posts = []
+
 	const post_list = fs.readdirSync(posts_directory)
 
 	if (!fs.existsSync(post_static_directory)) {
@@ -37,7 +48,7 @@ export default function build() {
 
 		posts.push(post)
 
-		index.push({
+		index.posts.push({
 			slug: post.slug,
 			title: post.title,
 			date: post.date,
@@ -45,19 +56,54 @@ export default function build() {
 			featured_image: post.featured_image,
 		})
 
+		for (const tag of post.tags) {
+			const tag_slug = tag.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+
+			if (!index.tags.find((t) => t.slug === tag_slug)) {
+				index.tags.push({
+					slug: tag_slug,
+					name: tag,
+				})
+			}
+
+			if (!tags[tag_slug]) {
+				tags[tag_slug] = []
+			}
+
+			tags[tag_slug].push({
+				slug: post.slug,
+				title: post.title,
+				date: post.date,
+				author: post.author,
+				featured_image: post.featured_image,
+			})
+		}
+
 		fs.writeFileSync(
 			path.join(post_static_directory, `${post.slug}.json`),
 			JSON.stringify(post, null, 4)
 		)
 	}
 
-	if (!fs.existsSync(post_static_directory)) {
-		fs.mkdirSync(post_static_directory, { recursive: true })
+	if (!fs.existsSync(tags_static_directory)) {
+		fs.mkdirSync(tags_static_directory, { recursive: true })
+	}
+
+	for (const tag of Object.keys(tags)) {
+		fs.writeFileSync(
+			path.join(tags_static_directory, `${tag}.json`),
+			JSON.stringify(tags[tag], null, 4)
+		)
 	}
 
 	fs.writeFileSync(
 		path.join(static_directory, 'posts.json'),
-		JSON.stringify(index, null, 4)
+		JSON.stringify(index.posts, null, 4)
+	)
+
+	fs.writeFileSync(
+		path.join(static_directory, 'tags.json'),
+		JSON.stringify(index.tags, null, 4)
 	)
 }
 
