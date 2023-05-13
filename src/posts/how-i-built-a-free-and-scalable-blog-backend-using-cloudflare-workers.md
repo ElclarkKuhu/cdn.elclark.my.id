@@ -42,7 +42,7 @@ With KV storage, I was able to store each blog post as a JSON object with the fo
 
 I then created endpoints to handle the following operations:
 
-- `GET /v1/blog`- returns a list of all blog posts.
+- `GET /v1/blog` - returns a list of all blog posts.
 - `GET /v1/blog/:slug` - returns a single blog post.
 - `POST /v1/blog/:slug` - creates a new blog post.
 - `PUT /v1/blog/:slug` - updates an existing blog post.
