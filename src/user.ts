@@ -31,7 +31,7 @@ export function build() {
 		const current_path = path.join(users_directory, item)
 		const user = JSON.parse(fs.readFileSync(current_path, 'utf8'))
 
-		console.log(`${user.name} (${user.username})`)
+		console.log(`${user.name} (@${user.username})`)
 
 		users.push(user)
 		index.push({

@@ -137,6 +137,17 @@ export function build() {
 	console.log()
 
 	console.log('Writing Post Index...')
+	console.log('5')
+	fs.writeFileSync(
+		path.join(static_directory, 'posts.5.json'),
+		JSON.stringify(index.posts.slice(0, 5), null, 4)
+	)
+	console.log('10')
+	fs.writeFileSync(
+		path.join(static_directory, 'posts.10.json'),
+		JSON.stringify(index.posts.slice(0, 10), null, 4)
+	)
+	console.log(`All (${index.posts.length})`)
 	fs.writeFileSync(
 		path.join(static_directory, 'posts.json'),
 		JSON.stringify(index.posts, null, 4)
