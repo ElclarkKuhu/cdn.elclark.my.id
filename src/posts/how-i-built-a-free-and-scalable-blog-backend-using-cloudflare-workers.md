@@ -1,5 +1,5 @@
 ---
-title: How I Used Cloudflare Workers to Build a Free and Scalable Blog Backend.
+title: How I Used Cloudflare Workers to Build a Free and Scalable Blog Backend
 featured_image: https://img.elclark.my.id/blog/how-i-built-a-free-and-scalable-blog-backend-using-cloudflare-workers.png
 author: elclark
 date: 2023-03-28T10:24:34.785Z
