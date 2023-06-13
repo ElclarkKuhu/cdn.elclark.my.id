@@ -32,22 +32,22 @@ To keep things simple, I decided to use the KV storage provided by Cloudflare Wo
 
 With KV storage, I was able to store each blog post as a JSON object with the following fields:
 
-- `title` - the title of the post
-- `content` - the content of the post
-- `date` - the date the post was published
-- `slug `- the slug of the post
-- `updated` - the date The post was last updated on
-- `visibility` - the visibility of the post
-- `author` - the author of the post
+-   `title` - the title of the post
+-   `content` - the content of the post
+-   `date` - the date the post was published
+-   `slug `- the slug of the post
+-   `updated` - the date The post was last updated on
+-   `visibility` - the visibility of the post
+-   `author` - the author of the post
 
 I then created endpoints to handle the following operations:
 
-- `GET /v1/blog` - returns a list of all blog posts.
-- `GET /v1/blog/:slug` - returns a single blog post.
-- `POST /v1/blog/:slug` - creates a new blog post.
-- `PUT /v1/blog/:slug` - updates an existing blog post.
-- `DELETE /v1/blog/:slug` - deletes an existing blog post.
-- `GET /v1/editor` - This command returns a list of all blog posts written by the current user.
+-   `GET /v1/blog` - returns a list of all blog posts.
+-   `GET /v1/blog/:slug` - returns a single blog post.
+-   `POST /v1/blog/:slug` - creates a new blog post.
+-   `PUT /v1/blog/:slug` - updates an existing blog post.
+-   `DELETE /v1/blog/:slug` - deletes an existing blog post.
+-   `GET /v1/editor` - This command returns a list of all blog posts written by the current user.
 
 I also added some validation to make sure that the required fields were present when creating or updating a post.
 

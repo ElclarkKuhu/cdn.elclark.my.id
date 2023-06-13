@@ -12,26 +12,13 @@ const static_directory = path.join(process.cwd(), config.build_path)
 
 export function build() {
 	const posts_directory = path.join(process.cwd(), config.posts_path)
-	const post_static_directory = path.join(
-		process.cwd(),
-		config.build_path,
-		'post'
-	)
-	const tags_static_directory = path.join(
-		process.cwd(),
-		config.build_path,
-		'tag'
-	)
-	const authors_static_directory = path.join(
-		process.cwd(),
-		config.build_path,
-		'user',
-		'posts'
-	)
+	const post_static_directory = path.join(process.cwd(), config.build_path, 'post')
+	const tags_static_directory = path.join(process.cwd(), config.build_path, 'tag')
+	const authors_static_directory = path.join(process.cwd(), config.build_path, 'user', 'posts')
 
 	const index = {
 		posts: [],
-		tags: [],
+		tags: []
 	}
 
 	const tags = {}
@@ -63,7 +50,7 @@ export function build() {
 			title: post.title,
 			date: post.date,
 			author: post.author,
-			featured_image: post.featured_image,
+			featured_image: post.featured_image
 		})
 
 		for (const tag of post.tags) {
@@ -76,7 +63,7 @@ export function build() {
 				title: post.title,
 				date: post.date,
 				author: post.author,
-				featured_image: post.featured_image,
+				featured_image: post.featured_image
 			})
 		}
 
@@ -88,7 +75,7 @@ export function build() {
 			slug: post.slug,
 			title: post.title,
 			date: post.date,
-			featured_image: post.featured_image,
+			featured_image: post.featured_image
 		})
 
 		fs.writeFileSync(
@@ -111,7 +98,7 @@ export function build() {
 
 		index.tags.push({
 			slug: tag_slug,
-			title: tag,
+			title: tag
 		})
 
 		fs.writeFileSync(
@@ -155,19 +142,14 @@ export function build() {
 	console.log()
 
 	console.log('Writing Tag Index...')
-	fs.writeFileSync(
-		path.join(static_directory, 'tags.json'),
-		JSON.stringify(index.tags, null, 4)
-	)
+	fs.writeFileSync(path.join(static_directory, 'tags.json'), JSON.stringify(index.tags, null, 4))
 	console.log()
 }
 
 function getReadingTime(content: string) {
 	const plain_text = content.replace(/<[^>]*>?/gm, '')
 
-	const reading_time = Math.ceil(
-		plain_text.split(' ').length / config.words_per_minute
-	)
+	const reading_time = Math.ceil(plain_text.split(' ').length / config.words_per_minute)
 
 	return reading_time
 }
@@ -189,10 +171,10 @@ function compilePost(post_path: string) {
 		tags: data.tags,
 		featured_image: data.featured_image,
 		reading_time,
-		content: html,
+		content: html
 	}
 }
 
 export default {
-	build,
+	build
 }

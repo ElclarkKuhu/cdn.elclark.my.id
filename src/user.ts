@@ -6,11 +6,7 @@ const static_directory = path.join(process.cwd(), config.build_path)
 
 export function build() {
 	const users_directory = path.join(process.cwd(), config.users_path)
-	const user_static_directory = path.join(
-		process.cwd(),
-		config.build_path,
-		'user'
-	)
+	const user_static_directory = path.join(process.cwd(), config.build_path, 'user')
 
 	const index = []
 	const users = []
@@ -37,7 +33,7 @@ export function build() {
 		index.push({
 			username: user.username,
 			name: user.name,
-			email: user.email,
+			email: user.email
 		})
 
 		fs.writeFileSync(
@@ -49,13 +45,10 @@ export function build() {
 	}
 
 	console.log('Writing User Index...')
-	fs.writeFileSync(
-		path.join(static_directory, 'users.json'),
-		JSON.stringify(index, null, 4)
-	)
+	fs.writeFileSync(path.join(static_directory, 'users.json'), JSON.stringify(index, null, 4))
 	console.log()
 }
 
 export default {
-	build,
+	build
 }
