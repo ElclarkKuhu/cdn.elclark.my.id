@@ -2,8 +2,9 @@ import fs from 'fs'
 import path from 'path'
 import config from './config.js'
 
-import blog from './blog.js'
-import user from './user.js'
+import blog from './build/blog.js'
+import user from './build/user.js'
+import image from './build/image.js'
 
 console.log('Building CDN...')
 const build_path = path.join(process.cwd(), config.build_path)
@@ -27,3 +28,4 @@ if (fs.existsSync(static_path)) {
 
 user.build()
 blog.build()
+image.build()
