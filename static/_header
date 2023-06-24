@@ -1,3 +1,4 @@
 /*
   Access-Control-Allow-Origin: *
   Access-Control-Allow-Methods: GET, OPTIONS
+  Referrer-Policy: no-referrer
