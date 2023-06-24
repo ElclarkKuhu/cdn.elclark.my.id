@@ -30,7 +30,9 @@ export function build() {
 		if (convertable) {
 			const current_path = path.join(images_directory, item)
 			const image = sharp(current_path)
-			const webp_path = path.join(image_build_directory, `${item}.webp`)
+
+			const filename = path.basename(item, path.extname(item))
+			const webp_path = path.join(image_build_directory, `${filename}.webp`)
 
 			console.log(`${item} -> ${webp_path}`)
 

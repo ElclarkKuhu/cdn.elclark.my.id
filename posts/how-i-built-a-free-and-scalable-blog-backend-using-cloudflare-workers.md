@@ -1,6 +1,6 @@
 ---
 title: How I Used Cloudflare Workers to Build a Free and Scalable Blog Backend
-featured_image: https://static.elclark.my.id/image/how-i-built-a-free-and-scalable-blog-backend-using-cloudflare-workers.png
+featured_image: https://static.elclark.my.id/image/how-i-built-a-free-and-scalable-blog-backend-using-cloudflare-workers.webp
 author: elclark_kuhu
 date: 2023-03-28T10:24:34.785Z
 tags: ['Cloudflare Workers', 'SvelteKit', 'Blog', 'Backend']
