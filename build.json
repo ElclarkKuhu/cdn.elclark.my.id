@@ -1,7 +1,7 @@
 {
 	"build_path": "build",
-	"posts_path": "posts",
-	"users_path": "users",
-	"images_path": "images",
+	"posts_path": "./data/posts",
+	"users_path": "./data/users",
+	"images_path": "./data/images",
 	"words_per_minute": 200
 }
