@@ -20,9 +20,7 @@ console.log()
 const static_path = path.join(process.cwd(), 'static')
 if (fs.existsSync(static_path)) {
 	console.log('Copying static files...')
-	fs.readdirSync(static_path).forEach((file) => {
-		fs.copyFileSync(path.join(static_path, file), path.join(build_path, file))
-	})
+	fs.cpSync(static_path, build_path, { recursive: true })
 	console.log()
 }
 
